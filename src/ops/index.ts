@@ -41,8 +41,10 @@ export function unique(): PipeFunction {
 	return function*(iter: Iterable<T>): Iterable<T> {
 		const set = new Set();
 		for (const item of iter) {
-			if (!set.has(item)) yield item;
-			set.add(item);
+			if (!set.has(item)) {
+				set.add(item);
+				yield item;
+			}
 		}
 	};
 }
