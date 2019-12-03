@@ -4,7 +4,9 @@
 	"description": "",
 	"main": "./src/index.js",
 	"scripts": {
-		"test": ""
+		"lint:staged": "lint-staged",
+		"build": "tsc",
+		"test": "jest"
 	},
 	"keywords": [
 		"iterables",
@@ -25,8 +27,8 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "npm run test"
+			"pre-commit": "npm run lint:staged",
+			"pre-push": "npm run build && npm run test"
 		}
 	},
 	"lint-staged": {

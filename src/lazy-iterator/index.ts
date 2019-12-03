@@ -8,8 +8,8 @@ export class LazyIterable {
 
 	private *_calc(): Iterable<any> {
 		let result = this._iter;
-		for (const op of this._callbackList) {
-			result = yield* op(result);
+		for (const operation of this._callbackList) {
+			result = yield* operation(result);
 		}
 		return result;
 	}
