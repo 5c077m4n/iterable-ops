@@ -23,7 +23,10 @@ export function filter(fn: Function): PipeFunction {
 export function find(fn: Function): PipeFunction {
 	return function*(iter: Iterable<T>): Iterable<T> {
 		for (const item of iter) {
-			if (fn(item)) return item;
+			if (fn(item)) {
+                              yield item;
+                              return;
+                        }
 		}
 	};
 }
