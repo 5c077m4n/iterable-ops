@@ -14,11 +14,12 @@ export class LazyIterable {
 		return result;
 	}
 
-	public pipe(...ops: PipeFunction[]) {
+	public pipe(...ops: PipeFunction[]): LazyIterable {
 		this._callbackList = ops;
+		return this;
 	}
 
-	public get(cb: Function): any[] {
+	public get(cb?: Function): any[] {
 		const result = Array.from(this._calc());
 
 		if (typeof cb === 'function') return cb(result);
@@ -26,6 +27,6 @@ export class LazyIterable {
 	}
 }
 
-export function from(iter: Iterable<any>, options: object): LazyIterable {
+export function from(iter: Iterable<any>, options?: object): LazyIterable {
 	return new LazyIterable(iter, options);
 }

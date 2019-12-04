@@ -1,7 +1,7 @@
 import { LazyIterable } from '../src/index';
 
 describe('Sanity', () => {
-	it('Import test', () => {
-		expect(!!LazyIterable);
+	it('Should allow the usage of imports', () => {
+		expect(LazyIterable).toBeTruthy();
 	});
 });
