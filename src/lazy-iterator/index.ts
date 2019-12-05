@@ -1,20 +1,23 @@
+import { isIterable } from '../helpers/index';
+
 export class LazyIterable {
-    private _iter: Iterable<any>;
+    private _iter: IterableIterator<any>;
     private _callbackList: PipeFunction<any, any>[] = [];
 
-    constructor(iter: Iterable<any>, options: object = {}) {
-        if (iter && typeof iter[Symbol.iterator] !== 'function') {
-            throw new Error('The given input is not an iterable.');
-        }
+    constructor(iter: IterableIterator<any>, options: object = {}) {
+        if (!isIterable(iter)) throw new Error('The given input is not a valid iterable.');
         this._iter = iter;
     }
 
     private *_calc(): Iterable<any> {
-        let result = this._iter;
         for (const operation of this._callbackList) {
-            result = yield* operation(result);
+            let tmpResult = [];
+            for (const item of this._iter) {
+                tmpResult.push(yield* operation(this._iter));
+            }
+            this._iter = tmpResult.values();
         }
-        return result;
+        return this._iter;
     }
 
     public pipe(...ops: PipeFunction[]): LazyIterable {
@@ -31,5 +34,5 @@ export class LazyIterable {
 }
 
 export function from(iter: Iterable<any>, options?: object): LazyIterable {
-    return new LazyIterable(iter, options);
+    return new LazyIterable(iter as IterableIterator<any>, options);
 }

@@ -1,12 +1,12 @@
 export function map(fn: Function): PipeFunction {
-    return function*(iter: Iterable<T>): Iterable<T> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
         for (const item of iter) {
             yield fn(item);
         }
     };
 }
 export function skim(fn: Function): PipeFunction {
-    return function*(iter: Iterable<T>): Iterable<T> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
         for (const item of iter) {
             fn(item);
             yield item;
@@ -14,14 +14,14 @@ export function skim(fn: Function): PipeFunction {
     };
 }
 export function filter(fn: Function): PipeFunction {
-    return function*(iter: Iterable<T>): Iterable<T> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
         for (const item of iter) {
             if (fn(item)) yield item;
         }
     };
 }
 export function find(fn: Function): PipeFunction {
-    return function*(iter: Iterable<T>): Iterable<T> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
         for (const item of iter) {
             if (fn(item)) {
                 yield item;
@@ -31,7 +31,7 @@ export function find(fn: Function): PipeFunction {
     };
 }
 export function concat(iter2: Iterable<S>): PipeFunction<T, T | S> {
-    return function*(iter: Iterable<T>): Iterable<T | S> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T | S> {
         for (const item of iter) {
             yield item;
         }
@@ -41,7 +41,7 @@ export function concat(iter2: Iterable<S>): PipeFunction<T, T | S> {
     };
 }
 export function unique(): PipeFunction {
-    return function*(iter: Iterable<T>): Iterable<T> {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
         const set = new Set();
         for (const item of iter) {
             if (!set.has(item)) {
@@ -49,5 +49,31 @@ export function unique(): PipeFunction {
                 yield item;
             }
         }
+    };
+}
+export function slice(first: number = 0, last: number = Infinity): PipeFunction {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
+        let i = 0;
+        for (const item of iter) {
+            if (i >= first) {
+                if (i <= last) yield item;
+                else return;
+            }
+        }
+    };
+}
+export function take(n: number = Infinity): PipeFunction {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
+        let i = 0;
+        for (const item of iter) {
+            if (i > n) return;
+            yield item;
+        }
+    };
+}
+export function first(): PipeFunction {
+    return function*(iter: IterableIterator<T>): IterableIterator<T> {
+        yield iter.next().value;
+        return;
     };
 }

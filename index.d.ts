@@ -1,5 +1,5 @@
 interface PipeFunction<TIn = any, TOut = TIn> {
-	(iter: Iterable<TIn>): Iterable<TOut>;
+    (iter: IterableIterator<TIn>): IterableIterator<TOut>;
 }
 
 type T = any;
