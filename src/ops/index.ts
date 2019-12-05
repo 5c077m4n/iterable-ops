@@ -55,10 +55,9 @@ export function slice(first: number = 0, last: number = Infinity): PipeFunction 
     return function*(iter: IterableIterator<T>): IterableIterator<T> {
         let i = 0;
         for (const item of iter) {
-            if (i >= first) {
-                if (i <= last) yield item;
-                else return;
-            }
+            if (i >= first) continue;
+            if (i >= last) return;
+            yield item;
         }
     };
 }

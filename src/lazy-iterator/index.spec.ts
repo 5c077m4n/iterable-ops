@@ -1,5 +1,5 @@
 import { from } from './index';
-import { map, filter, find, concat, unique, first, take, skim } from '../ops/index';
+import { map, filter, find, concat, unique, first, take, skim, slice } from '../ops/index';
 import { range } from '../helpers/index';
 
 describe('LazyIterator', () => {
@@ -57,6 +57,13 @@ describe('LazyIterator', () => {
             .get();
 
         expect(arrOut).toEqual(expect.arrayContaining(arr));
+    });
+    it('Should slice the array', () => {
+        const arrOut = from(arr.slice(1, 4))
+            .pipe(slice(1, 4))
+            .get();
+
+        expect(arrOut).toEqual(expect.arrayContaining(arr.slice(1, 4)));
     });
     it('Should use multiple pipe operators', () => {
         const arrOut = from(arr)

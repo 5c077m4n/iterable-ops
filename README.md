@@ -4,7 +4,7 @@
 
 # Lazy Piping
 
-A tiny package to allow lazy operations on all iterators.
+A tiny package to allow lazy operations on all iterators. The whole point of this package is to allow saving of operations and the only calculating when needed (by calling the `.get()` function).
 
 Just type into the terminal:
 
