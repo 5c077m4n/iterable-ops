@@ -4,8 +4,9 @@ const index_1 = require("../helpers/index");
 class LazyIterable {
     constructor(iter, options = {}) {
         this._callbackList = [];
-        if (!index_1.isIterable(iter))
+        if (!index_1.isIterable(iter)) {
             throw new TypeError('The given input is not a valid iterable.');
+        }
         this._iter = iter;
     }
     *_calc() {
