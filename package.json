@@ -7,7 +7,8 @@
         "clear": "rimraf ./dist",
         "lint:staged": "lint-staged",
         "build": "tsc",
-        "test": "jest"
+        "test": "jest",
+        "postinstall": "run-s build"
     },
     "keywords": [
         "iterables",
