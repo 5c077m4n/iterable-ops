@@ -1,6 +1,6 @@
 {
 	"name": "lazy-piping",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A lazy piping operator for iterators",
 	"main": "./dist/index.js",
 	"scripts": {
