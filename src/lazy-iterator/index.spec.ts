@@ -1,8 +1,13 @@
 import { from } from './index';
-import { map, filter, find, concat, unique, first, take } from '../ops/index';
+import { map, filter, find, concat, unique, first, take, skim } from '../ops/index';
 import { range } from '../helpers/index';
 
 describe('LazyIterator', () => {
+    let arr: number[];
+    beforeEach(() => {
+        arr = [...range(0, 9)];
+    });
+
     it('Should throw an error for a non-iterable input', () => {
         try {
             // @ts-ignore
@@ -12,23 +17,27 @@ describe('LazyIterator', () => {
         }
     });
     it('Should map an array', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(map((x: number) => x * 2))
             .get();
 
         expect(arrOut).toEqual(expect.arrayContaining(arr.map((x: number) => x * 2)));
     });
-    it('Should filter an array', () => {
-        const arr: number[] = [...range(0, 9)];
+    it('Should map an array', () => {
         const arrOut = from(arr)
-            .pipe(filter((x: number) => x % 2))
+            .pipe(map((x: number) => x * 2))
             .get();
 
-        expect(arrOut).toEqual(expect.arrayContaining(arr.filter((x: number) => x % 2)));
+        expect(arrOut).toEqual(expect.arrayContaining(arr.map((x: number) => x * 2)));
+    });
+    it('Should skim an array', () => {
+        const arrOut = from(arr)
+            .pipe(skim((x: number) => x % 2))
+            .get();
+
+        expect(arrOut).toEqual(expect.arrayContaining(arr));
     });
     it('Should find in an array', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(find((x: number) => x % 2))
             .get();
@@ -36,7 +45,6 @@ describe('LazyIterator', () => {
         expect(arrOut).toEqual(expect.arrayContaining([arr.find((x: number) => x % 2)]));
     });
     it('Should concat two arrays', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(concat(arr))
             .get();
@@ -44,15 +52,13 @@ describe('LazyIterator', () => {
         expect(arrOut).toEqual(expect.arrayContaining(arr.concat(arr)));
     });
     it('Should only return the unique values', () => {
-        const arr: number[] = [...range(0, 9), ...range(0, 9), ...range(0, 9), ...range(0, 9)];
-        const arrOut = from(arr)
+        const arrOut = from(arr.concat(arr).concat(arr))
             .pipe(unique())
             .get();
 
-        expect(arrOut).toEqual(expect.arrayContaining([...new Set(arr).values()]));
+        expect(arrOut).toEqual(expect.arrayContaining(arr));
     });
     it('Should use multiple pipe operators', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(
                 map((x: number) => x * 3),
@@ -63,7 +69,6 @@ describe('LazyIterator', () => {
         expect(arrOut).toEqual(expect.arrayContaining(arr.map((x: number) => x * 3).filter((x: number) => x % 2)));
     });
     it('Should use more multiple pipe operators', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(
                 map((x: number) => x * 3),
@@ -78,7 +83,6 @@ describe('LazyIterator', () => {
         expect(arrOut).toEqual(expect.arrayContaining([0]));
     });
     it('Should use even more multiple pipe operators', () => {
-        const arr: number[] = [...range(0, 9)];
         const arrOut = from(arr)
             .pipe(
                 map((x: number) => x * 3),
