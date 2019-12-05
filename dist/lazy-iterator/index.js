@@ -1,8 +1,10 @@
-import { isIterable } from '../helpers/index';
-export class LazyIterable {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("../helpers/index");
+class LazyIterable {
     constructor(iter, options = {}) {
         this._callbackList = [];
-        if (!isIterable(iter))
+        if (!index_1.isIterable(iter))
             throw new TypeError('The given input is not a valid iterable.');
         this._iter = iter;
     }
@@ -28,6 +30,8 @@ export class LazyIterable {
         return Array.from(result);
     }
 }
-export function from(iter, options) {
+exports.LazyIterable = LazyIterable;
+function from(iter, options) {
     return new LazyIterable(iter, options);
 }
+exports.from = from;

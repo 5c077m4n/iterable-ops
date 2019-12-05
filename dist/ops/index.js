@@ -1,11 +1,14 @@
-export function map(fn) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function map(fn) {
     return function* (iter) {
         for (const item of iter) {
             yield fn(item);
         }
     };
 }
-export function skim(fn) {
+exports.map = map;
+function skim(fn) {
     return function* (iter) {
         for (const item of iter) {
             fn(item);
@@ -13,7 +16,8 @@ export function skim(fn) {
         }
     };
 }
-export function filter(fn) {
+exports.skim = skim;
+function filter(fn) {
     return function* (iter) {
         for (const item of iter) {
             if (fn(item))
@@ -21,7 +25,8 @@ export function filter(fn) {
         }
     };
 }
-export function find(fn) {
+exports.filter = filter;
+function find(fn) {
     return function* (iter) {
         for (const item of iter) {
             if (fn(item)) {
@@ -31,7 +36,8 @@ export function find(fn) {
         }
     };
 }
-export function concat(iter2) {
+exports.find = find;
+function concat(iter2) {
     return function* (iter) {
         for (const item of iter) {
             yield item;
@@ -41,7 +47,8 @@ export function concat(iter2) {
         }
     };
 }
-export function unique() {
+exports.concat = concat;
+function unique() {
     return function* (iter) {
         const set = new Set();
         for (const item of iter) {
@@ -52,7 +59,8 @@ export function unique() {
         }
     };
 }
-export function slice(first = 0, last = Infinity) {
+exports.unique = unique;
+function slice(first = 0, last = Infinity) {
     return function* (iter) {
         let i = 0;
         for (const item of iter) {
@@ -65,7 +73,8 @@ export function slice(first = 0, last = Infinity) {
         }
     };
 }
-export function take(n = Infinity) {
+exports.slice = slice;
+function take(n = Infinity) {
     return function* (iter) {
         let i = 0;
         for (const item of iter) {
@@ -75,9 +84,11 @@ export function take(n = Infinity) {
         }
     };
 }
-export function first() {
+exports.take = take;
+function first() {
     return function* (iter) {
         yield iter.next().value;
         return;
     };
 }
+exports.first = first;
