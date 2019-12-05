@@ -11,9 +11,10 @@ export class LazyIterable {
 
     private *_calc(): Iterable<any> {
         for (const operation of this._callbackList) {
-            let tmpResult = [];
-            for (const item of this._iter) {
-                tmpResult.push(yield* operation(this._iter));
+            const currentOp = operation(this._iter);
+            const tmpResult = [];
+            for (const _ of this._iter) {
+                tmpResult.push(yield* currentOp);
             }
             this._iter = tmpResult.values();
         }
