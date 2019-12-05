@@ -56,7 +56,7 @@ describe('LazyIterator', () => {
         const arrOut = from(arr)
             .pipe(
                 map((x: number) => x * 3),
-                filter((x: number) => x % 2),
+                filter((x: number) => x % 2)
             )
             .get();
 
@@ -71,7 +71,7 @@ describe('LazyIterator', () => {
                 filter((x: number) => x % 2),
                 filter((x: number) => x % 2),
                 filter((x: number) => x % 2),
-                first(),
+                first()
             )
             .get();
 
@@ -88,7 +88,7 @@ describe('LazyIterator', () => {
                 take(3),
                 take(2),
                 take(1),
-                first(),
+                first()
             )
             .get();
 
