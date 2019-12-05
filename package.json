@@ -8,9 +8,9 @@
         "clean": "rimraf ./dist",
         "lint:staged": "lint-staged",
         "lint": "eslint ./src/**/*.ts && prettier --check ./src/**/*.ts",
-        "build": "run-s build:*",
         "build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
         "build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
+        "build": "run-s build:*",
         "test": "jest"
     },
     "keywords": [
