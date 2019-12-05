@@ -64,12 +64,11 @@ function slice(first = 0, last = Infinity) {
     return function* (iter) {
         let i = 0;
         for (const item of iter) {
-            if (i >= first) {
-                if (i <= last)
-                    yield item;
-                else
-                    return;
-            }
+            if (i >= first)
+                continue;
+            if (i >= last)
+                return;
+            yield item;
         }
     };
 }
