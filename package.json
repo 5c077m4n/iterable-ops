@@ -9,7 +9,7 @@
         "lint": "eslint ./src/** && prettier --check ./src/**",
         "build": "tsc",
         "test": "jest",
-        "postinstall": "run-s build"
+        "postinstall": "npm run build"
     },
     "keywords": [
         "iterables",
