@@ -20,5 +20,7 @@ module.exports = {
         SharedArrayBuffer: 'readonly',
     },
     plugins: ['@typescript-eslint'],
-    rules: {},
+    rules: {
+        'no-unused-vars': 'warn',
+    },
 };

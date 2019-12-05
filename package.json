@@ -6,8 +6,10 @@
     "scripts": {
         "clear": "rimraf ./dist",
         "lint:staged": "lint-staged",
+        "lint": "eslint ./src/** && prettier --check ./src/**",
         "build": "tsc",
-        "test": "jest"
+        "test": "jest",
+        "postinstall": "run-s build"
     },
     "keywords": [
         "iterables",
@@ -37,15 +39,15 @@
     "husky": {
         "hooks": {
             "pre-commit": "run-s lint:staged clear build",
-            "pre-push": "run-s build test"
+            "pre-push": "run-s lint clear build test"
         }
     },
     "lint-staged": {
-        "*.{ts,js,md}": [
+        "*.{ts,md}": [
             "prettier --write",
             "git add"
         ],
-        "*.{ts,js}": [
+        "*.ts": [
             "eslint --fix",
             "git add"
         ]

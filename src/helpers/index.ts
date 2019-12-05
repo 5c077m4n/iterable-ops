@@ -1,5 +1,5 @@
 export function isIterable(obj: any): boolean {
-    return Array.isArray(obj) || (obj && typeof obj[Symbol.iterator] !== 'function');
+    return Array.isArray(obj) || typeof obj?.[Symbol.iterator] !== 'function';
 }
 export function* range(start: number = 0, end: number = Infinity, step: number = 1): Iterable<number> {
     let i = start;

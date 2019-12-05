@@ -5,7 +5,7 @@ export class LazyIterable {
     private _callbackList: PipeFunction<any, any>[] = [];
 
     constructor(iter: IterableIterator<any>, options: object = {}) {
-        if (!isIterable(iter)) throw new Error('The given input is not a valid iterable.');
+        if (!isIterable(iter)) throw new TypeError('The given input is not a valid iterable.');
         this._iter = iter;
     }
 
