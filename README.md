@@ -8,11 +8,17 @@ A tiny package to allow lazy operations on all iterators. The whole point of thi
 
 Just type into the terminal:
 
+```bash
+npm install --save lazy-piping
+```
+
+And you're good to go!
+
 ```javascript
 const { from, map, filter } = require('lazy-piping');
 ```
 
-And you're good to go!
+Then, in your code itself:
 
 ```javascript
 from([1, 2, 3, 4, 5, 6, 7, 8])
