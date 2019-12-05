@@ -9,8 +9,8 @@
         "lint:staged": "lint-staged",
         "lint": "eslint ./src/**/*.ts && prettier --check ./src/**/*.ts",
         "build": "run-s build:*",
-        "build:esm": "tsc --project ./tsconfig/tsconfig.esm.json",
-        "build:cjs": "tsc --project ./tsconfig/tsconfig.cjs.json",
+        "build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
+        "build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
         "test": "jest"
     },
     "keywords": [
