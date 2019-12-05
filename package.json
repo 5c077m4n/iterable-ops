@@ -4,7 +4,7 @@
     "description": "A lazy piping operator for iterators",
     "main": "./dist/index.js",
     "scripts": {
-        "clear": "rimraf ./dist",
+        "clean": "rimraf ./dist",
         "lint:staged": "lint-staged",
         "lint": "eslint ./src/**/*.ts && prettier --check ./src/**/*.ts",
         "build": "tsc",
@@ -37,7 +37,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "run-s lint:staged clear build",
+            "pre-commit": "run-s lint:staged clean build",
             "pre-push": "run-s lint test"
         }
     },
