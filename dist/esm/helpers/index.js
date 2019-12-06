@@ -1,6 +1,10 @@
 export function isIterable(obj) {
     var _a;
-    return Array.isArray(obj) || typeof ((_a = obj) === null || _a === void 0 ? void 0 : _a[Symbol.iterator]) !== 'function';
+    return Array.isArray(obj) || typeof ((_a = obj) === null || _a === void 0 ? void 0 : _a[Symbol.iterator]) === 'function';
+}
+export function isAsyncIterable(obj) {
+    var _a;
+    return typeof ((_a = obj) === null || _a === void 0 ? void 0 : _a[Symbol.asyncIterator]) === 'function';
 }
 export function* range(start = 0, end = Infinity, step = 1) {
     let i = start;
