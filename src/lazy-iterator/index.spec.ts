@@ -16,6 +16,13 @@ describe('LazyIterator', () => {
             expect(e).toBeInstanceOf(Error);
         }
     });
+    it('Should get with a callback', () => {
+        const arrOut = from(arr)
+            .pipe(map((x: any) => x))
+            .get((x: any) => x);
+
+        expect(arrOut).toEqual(expect.arrayContaining(arr));
+    });
     it('Should use multiple pipe operators', () => {
         const arrOut = from(arr)
             .pipe(

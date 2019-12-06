@@ -12,27 +12,28 @@ export class LazyIterable {
     }
 
     private *_calc(): Iterable<any> {
+        let result = this._iter;
         for (const operation of this._callbackList) {
-            const currentOp = operation(this._iter);
+            const currentOp = operation(result);
             const tmpResult = [];
-            for (const _ of this._iter) {
+            for (const _ of result) {
                 tmpResult.push(yield* currentOp);
             }
-            this._iter = tmpResult.values();
+            result = tmpResult.values();
         }
-        return this._iter;
+        return result;
     }
 
     public pipe(...ops: PipeFunction[]): LazyIterable {
-        this._callbackList = ops;
+        this._callbackList = ops ?? [];
         return this;
     }
 
-    public get(cb?: Function): any[] {
+    public get(callback?: Function): any[] {
         const result = Array.from(this._calc());
 
-        if (typeof cb === 'function') return cb(result);
-        return Array.from(result);
+        if (typeof callback === 'function') return callback(result);
+        return result;
     }
 }
 
