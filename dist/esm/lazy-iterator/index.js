@@ -8,25 +8,26 @@ export class LazyIterable {
         this._iter = iter;
     }
     *_calc() {
+        let result = this._iter;
         for (const operation of this._callbackList) {
-            const currentOp = operation(this._iter);
+            const currentOp = operation(result);
             const tmpResult = [];
-            for (const _ of this._iter) {
+            for (const _ of result) {
                 tmpResult.push(yield* currentOp);
             }
-            this._iter = tmpResult.values();
+            result = tmpResult.values();
         }
-        return this._iter;
+        return result;
     }
     pipe(...ops) {
-        this._callbackList = ops;
+        this._callbackList = (ops !== null && ops !== void 0 ? ops : []);
         return this;
     }
-    get(cb) {
+    get(callback) {
         const result = Array.from(this._calc());
-        if (typeof cb === 'function')
-            return cb(result);
-        return Array.from(result);
+        if (typeof callback === 'function')
+            return callback(result);
+        return result;
     }
 }
 export function from(iter, options) {
