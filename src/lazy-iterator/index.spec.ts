@@ -16,55 +16,6 @@ describe('LazyIterator', () => {
             expect(e).toBeInstanceOf(Error);
         }
     });
-    it('Should map an array', () => {
-        const arrOut = from(arr)
-            .pipe(map((x: number) => x * 2))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr.map((x: number) => x * 2)));
-    });
-    it('Should map an array', () => {
-        const arrOut = from(arr)
-            .pipe(map((x: number) => x * 2))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr.map((x: number) => x * 2)));
-    });
-    it('Should skim an array', () => {
-        const arrOut = from(arr)
-            .pipe(skim((x: number) => x % 2))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr));
-    });
-    it('Should find in an array', () => {
-        const arrOut = from(arr)
-            .pipe(find((x: number) => x % 2))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining([arr.find((x: number) => x % 2)]));
-    });
-    it('Should concat two arrays', () => {
-        const arrOut = from(arr)
-            .pipe(concat(arr))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr.concat(arr)));
-    });
-    it('Should only return the unique values', () => {
-        const arrOut = from(arr.concat(arr).concat(arr))
-            .pipe(unique())
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr));
-    });
-    it('Should slice the array', () => {
-        const arrOut = from(arr.slice(1, 4))
-            .pipe(slice(1, 4))
-            .get();
-
-        expect(arrOut).toEqual(expect.arrayContaining(arr.slice(1, 4)));
-    });
     it('Should use multiple pipe operators', () => {
         const arrOut = from(arr)
             .pipe(

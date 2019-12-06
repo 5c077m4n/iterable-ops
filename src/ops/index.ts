@@ -49,13 +49,14 @@ export function unique(): PipeFunction {
                 yield item;
             }
         }
+        set.clear();
     };
 }
 export function slice(first: number = 0, last: number = Infinity): PipeFunction {
     return function*(iter: IterableIterator<T>): IterableIterator<T> {
         let i = 0;
         for (const item of iter) {
-            if (i >= first) continue;
+            if (i > first) continue;
             if (i >= last) return;
             yield item;
         }

@@ -11,7 +11,8 @@
         "build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
         "build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
         "build": "run-s build:*",
-        "test": "jest"
+        "test": "jest",
+        "prepare": "run-s lint clean build test"
     },
     "keywords": [
         "iterables",
