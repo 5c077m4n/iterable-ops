@@ -1,5 +1,5 @@
 import { from } from './index';
-import { map, filter, find, concat, unique, first, take, skim, slice } from '../ops/index';
+import { map, filter, first, take } from '../ops/index';
 import { range } from '../helpers/index';
 
 describe('LazyIterator', () => {
