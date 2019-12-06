@@ -1,4 +1,4 @@
-import { range, isIterable } from './index';
+import { range, isIterable, isAsyncIterable } from './index';
 
 describe('Helpers tests', () => {
     describe('Range function tests', () => {
@@ -14,6 +14,9 @@ describe('Helpers tests', () => {
         });
     });
     describe('isIterable function tests', () => {
+        it('Should say that a number is not an iterable', () => {
+            expect(isIterable(123)).toBeFalsy();
+        });
         it('Should say that an array is an iterable', () => {
             expect(isIterable([]));
         });
@@ -22,6 +25,16 @@ describe('Helpers tests', () => {
         });
         it('Should say that a Map is an iterable', () => {
             expect(isIterable(new Map()));
+        });
+    });
+    describe('isAsyncIterable function tests', () => {
+        it('Should say that a custorm object is an async iterable', () => {
+            const aIter = {
+                [Symbol.asyncIterator]() {
+                    return Promise.resolve(123);
+                },
+            };
+            expect(isAsyncIterable(aIter));
         });
     });
 });

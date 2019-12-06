@@ -12,13 +12,13 @@ Just type into the terminal:
 npm install --save lazy-piping
 ```
 
-And you're good to go!
+Then, in your code itself:
 
 ```javascript
 const { from, map, filter } = require('lazy-piping');
 ```
 
-Then, in your code itself:
+And you're good to go!
 
 ```javascript
 from([1, 2, 3, 4, 5, 6, 7, 8])
