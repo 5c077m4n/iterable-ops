@@ -57,6 +57,7 @@ function unique() {
                 yield item;
             }
         }
+        set.clear();
     };
 }
 exports.unique = unique;
@@ -64,7 +65,7 @@ function slice(first = 0, last = Infinity) {
     return function* (iter) {
         let i = 0;
         for (const item of iter) {
-            if (i >= first)
+            if (i > first)
                 continue;
             if (i >= last)
                 return;
