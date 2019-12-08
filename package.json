@@ -1,6 +1,6 @@
 {
     "name": "lazy-piping",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "A lazy piping operator for iterators",
     "main": "./packages/lazy-piping.cjs/src/indes.js",
     "module": "./packages/lazy-piping.esm/src/indes.js",
