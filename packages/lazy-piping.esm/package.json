@@ -8,7 +8,10 @@
         "default": "./src/index.js"
     },
     "sideEffects": false,
-    "scripts": {},
+    "scripts": {
+        "clean": "rimraf ./src",
+        "lint": "eslint ./src/**/*.js && prettier --check ./src/**/*.js"
+    },
     "keywords": [
         "iterables",
         "iterate",

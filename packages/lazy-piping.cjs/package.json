@@ -3,12 +3,10 @@
     "version": "1.0.17",
     "description": "A lazy piping operator for iterators",
     "main": "./src/index.js",
-    "type": "commonjs",
-    "exports": {
-        "require": "./src/index.js"
+    "scripts": {
+        "clean": "rimraf ./src",
+        "lint": "eslint ./src/**/*.js && prettier --check ./src/**/*.js"
     },
-    "sideEffects": false,
-    "scripts": {},
     "keywords": [
         "iterables",
         "iterate",

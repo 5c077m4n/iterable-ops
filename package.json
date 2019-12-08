@@ -2,24 +2,24 @@
     "name": "lazy-piping",
     "version": "1.0.18",
     "description": "A lazy piping operator for iterators",
-    "main": "./packages/lazy-piping.cjs/src/indes.js",
-    "module": "./packages/lazy-piping.esm/src/indes.js",
+    "main": "./packages/lazy-piping.cjs/src/index.js",
+    "module": "./packages/lazy-piping.esm/src/index.js",
     "exports": {
         ".": {
-            "require": "./packages/lazy-piping.cjs/src/index.js",
-            "default": "./packages/lazy-piping.esm/src/indes.js"
+            "require": "./packages/lazy-piping.cjs/",
+            "default": "./packages/lazy-piping.esm/"
         }
     },
     "sideEffects": false,
     "scripts": {
-        "clean": "rimraf ./packages/lazy-piping.cjs/src/**/* ./packages/lazy-piping.esm/src/**/*",
+        "clean:all": "lerna run clean",
         "lint:staged": "lint-staged",
         "lint": "eslint ./src/**/*.ts && prettier --check ./src/**/*.ts",
         "build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
         "build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
         "build": "run-s build:*",
         "test": "jest",
-        "prepare": "run-s lint clean build test"
+        "prepare": "run-s lint clean:all build test"
     },
     "keywords": [
         "iterables",
@@ -49,7 +49,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "run-s lint:staged clean build",
+            "pre-commit": "run-s lint:staged clean:all build",
             "pre-push": "run-s lint test"
         }
     },
