@@ -1,3 +1,20 @@
 {
-    "type": "esm"
+    "name": "lazy-piping.esm",
+    "version": "1.0.17",
+    "description": "A lazy piping operator for iterators",
+    "module": "./src/index.js",
+    "type": "module",
+    "exports": {
+        "default": "./src/index.js"
+    },
+    "sideEffects": false,
+    "scripts": {},
+    "keywords": [
+        "iterables",
+        "iterate",
+        "pipe",
+        "array"
+    ],
+    "author": "Roee Shapira",
+    "license": "The Unlicense"
 }
