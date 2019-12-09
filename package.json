@@ -17,6 +17,7 @@
         "lint": "eslint ./src/**/*.ts && prettier --check ./src/**/*.ts",
         "build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
         "build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
+        "build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
         "build": "run-s build:*",
         "test": "jest",
         "prepare": "run-s lint clean:all build test"
