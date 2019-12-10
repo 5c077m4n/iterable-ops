@@ -1,6 +1,6 @@
 import { isIterable } from '../helpers/index';
 
-export class LazyIterable {
+export class LazyPiping {
 	private _iter: IterableIterator<any>;
 	private _callbackList: PipeFunction<any, any>[] = [];
 
@@ -24,7 +24,7 @@ export class LazyIterable {
 		return result;
 	}
 
-	public pipe(...ops: PipeFunction[]): LazyIterable {
+	public pipe(...ops: PipeFunction[]): LazyPiping {
 		this._callbackList = ops ?? [];
 		return this;
 	}
@@ -37,6 +37,6 @@ export class LazyIterable {
 	}
 }
 
-export function from(iter: Iterable<any>, options?: object): LazyIterable {
-	return new LazyIterable(iter as IterableIterator<any>, options);
+export function from(iter: Iterable<any>, options?: object): LazyPiping {
+	return new LazyPiping(iter as IterableIterator<any>, options);
 }

@@ -1,5 +1,5 @@
 import { isIterable } from '../helpers/index';
-export class LazyIterable {
+export class LazyPiping {
     constructor(iter, options = {}) {
         this._callbackList = [];
         if (!isIterable(iter)) {
@@ -31,5 +31,5 @@ export class LazyIterable {
     }
 }
 export function from(iter, options) {
-    return new LazyIterable(iter, options);
+    return new LazyPiping(iter, options);
 }

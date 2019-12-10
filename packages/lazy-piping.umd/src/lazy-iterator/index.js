@@ -10,7 +10,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const index_1 = require("../helpers/index");
-    class LazyIterable {
+    class LazyPiping {
         constructor(iter, options = {}) {
             this._callbackList = [];
             if (!index_1.isIterable(iter)) {
@@ -41,9 +41,9 @@
             return result;
         }
     }
-    exports.LazyIterable = LazyIterable;
+    exports.LazyPiping = LazyPiping;
     function from(iter, options) {
-        return new LazyIterable(iter, options);
+        return new LazyPiping(iter, options);
     }
     exports.from = from;
 });
