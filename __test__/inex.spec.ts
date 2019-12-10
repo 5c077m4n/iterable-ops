@@ -1,7 +1,7 @@
-import { LazyIterable } from '../src/index';
+import { LazyPiping } from '../src/index';
 
 describe('Sanity', () => {
 	it('Should allow the usage of imports', () => {
-		expect(LazyIterable).toBeTruthy();
+		expect(LazyPiping).toBeTruthy();
 	});
 });
