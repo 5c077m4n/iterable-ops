@@ -22,5 +22,6 @@ module.exports = {
     plugins: ['@typescript-eslint'],
     rules: {
         'no-unused-vars': 'warn',
+        indent: ['warn', 'tab'],
     },
 };
