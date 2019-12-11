@@ -1,18 +1,1 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./lazy-iterator/index", "./ops/index", "./helpers/index"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    function __export(m) {
-        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-    }
-    Object.defineProperty(exports, "__esModule", { value: true });
-    __export(require("./lazy-iterator/index"));
-    __export(require("./ops/index"));
-    __export(require("./helpers/index"));
-});
+!function(n,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t((n=n||self).LazyPiping={})}(this,(function(n){"use strict";function t(n){var t;return Array.isArray(n)||"function"==typeof(null===(t=n)||void 0===t?void 0:t[Symbol.iterator])}class o{constructor(n,o={}){if(this._callbackList=[],!t(n))throw new TypeError("The given input is not a valid iterable.");this._iter=n}*_calc(){let n=this._iter;for(const t of this._callbackList){const o=t(n),i=[];for(const t of n)i.push(yield*o);n=i.values()}return n}pipe(...n){return this._callbackList=null!=n?n:[],this}get(n){const t=Array.from(this._calc());return"function"==typeof n?n(t):t}}n.LazyPiping=o,n.concat=function(n){return function*(t){for(const n of t)yield n;for(const t of n)yield t}},n.filter=function(n){return function*(t){for(const o of t)n(o)&&(yield o)}},n.find=function(n){return function*(t){for(const o of t)if(n(o))return void(yield o)}},n.first=function(){return function*(n){yield n.next().value}},n.from=function(n,t){return new o(n,t)},n.isAsyncIterable=function(n){var t;return"function"==typeof(null===(t=n)||void 0===t?void 0:t[Symbol.asyncIterator])},n.isIterable=t,n.map=function(n){return function*(t){for(const o of t)yield n(o)}},n.range=function*(n=0,t=1/0,o=1){let i=n,e=t;for(;e>0;)yield i,i+=o,e-=o},n.skim=function(n){return function*(t){for(const o of t)n(o),yield o}},n.slice=function(n=0,t=1/0){return function*(o){for(const i of o)if(!(0>n)){if(0>=t)return;yield i}}},n.take=function(n=1/0){return function*(t){for(const o of t){if(0>n)return;yield o}}},n.unique=function(){return function*(n){const t=new Set;for(const o of n)t.has(o)||(t.add(o),yield o);t.clear()}},Object.defineProperty(n,"__esModule",{value:!0})}));
