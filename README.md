@@ -27,7 +27,7 @@ import { from, map, filter } from 'lazy-piping';
 or (as a script in your HTML):
 
 ```
-https://unpkg.com/lazy-piping@1.1.0/packages/lazy-piping.umd/src/index.js
+https://unpkg.com/lazy-piping@latest/packages/lazy-piping.umd/src/index.js
 ```
 
 And you're good to go!
