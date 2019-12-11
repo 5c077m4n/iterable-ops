@@ -18,15 +18,27 @@ Then, in your code itself:
 const { from, map, filter } = require('lazy-piping');
 ```
 
+or:
+
+```javascript
+import { from, map, filter } from 'lazy-piping';
+```
+
+or (as a script in your HTML):
+
+```
+https://unpkg.com/lazy-piping@1.1.0/packages/lazy-piping.umd/src/index.js
+```
+
 And you're good to go!
 
 ```javascript
 from([1, 2, 3, 4, 5, 6, 7, 8])
-    .pipe(
-        map(x => x * 2),
-        filter(x => x % 3)
-    )
-    .get();
+	.pipe(
+		map(x => x * 2),
+		filter(x => x % 3)
+	)
+	.get();
 ```
 
 **Happy iterating! ;)**
