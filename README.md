@@ -1,8 +1,8 @@
+# Lazy Piping
+
 [![Build Status](https://travis-ci.org/5c077m4n/iterable-ops.svg?branch=master)](https://travis-ci.org/5c077m4n/iterable-ops)
 [![Coverage Status](https://coveralls.io/repos/github/5c077m4n/iterable-ops/badge.svg?branch=master)](https://coveralls.io/github/5c077m4n/iterable-ops?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/5c077m4n/iterable-ops/badge.svg?targetFile=package.json)](https://snyk.io/test/github/5c077m4n/iterable-ops?targetFile=package.json)
-
-# Lazy Piping
 
 A tiny package to allow lazy operations on all iterators. The whole point of this package is to allow saving of operations and the only calculating when needed (by calling the `.get()` function).
 
@@ -26,8 +26,12 @@ import { from, map, filter } from 'lazy-piping';
 
 or (as a script in your HTML):
 
+```html
+<script src="https://unpkg.com/lazy-piping@latest/packages/lazy-piping.umd/src/index.js"></script>
 ```
-https://unpkg.com/lazy-piping@latest/packages/lazy-piping.umd/src/index.js
+
+```javascript
+const { from, map, filter } = LazyPiping;
 ```
 
 And you're good to go!
