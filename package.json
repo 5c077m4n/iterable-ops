@@ -12,10 +12,8 @@
 	"author": "Roee Shapira",
 	"sideEffects": false,
 	"exports": {
-		".": {
-			"require": "./packages/lazy-piping.cjs/",
-			"default": "./packages/lazy-piping.esm/"
-		}
+		"import": "./packages/lazy-piping.esm/",
+		"require": "./packages/lazy-piping.cjs/"
 	},
 	"main": "./packages/lazy-piping.cjs/src/index.js",
 	"module": "./packages/lazy-piping.esm/src/index.js",
