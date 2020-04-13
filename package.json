@@ -1,6 +1,6 @@
 {
 	"name": "lazy-piping",
-	"version": "1.1.7",
+	"version": "1.1.6",
 	"description": "A lazy piping operator for iterators",
 	"keywords": [
 		"iterables",
@@ -18,7 +18,7 @@
 	"main": "./packages/lazy-piping.cjs/src/index.js",
 	"module": "./packages/lazy-piping.esm/src/index.js",
 	"files": [
-		"./packages/**/*.{js,json}"
+		"./packages/**/*"
 	],
 	"scripts": {
 		"build": "rollup -c",
