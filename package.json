@@ -17,6 +17,9 @@
 	},
 	"main": "./packages/lazy-piping.cjs/src/index.js",
 	"module": "./packages/lazy-piping.esm/src/index.js",
+	"files": [
+		"./packages/*"
+	],
 	"scripts": {
 		"build": "rollup -c",
 		"clean:all": "lerna run clean",
